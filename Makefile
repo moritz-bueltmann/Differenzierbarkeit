@@ -1,13 +1,9 @@
 # Firgure name #################################################################
-FNAME=f6
-# Initialization script name ###################################################
-INAME=init
+FIGURE=f6
 # Figure script name ###################################################
-SNAME=f6
+SOURCE=f6
 # Compiler #####################################################################
-RRR=Rscript
-# Script files #################################################################
-SCRIPTS= $(wildcard *.R)
+PPP=python3
 # TARGETS ######################################################################
 
 .PHONY: default all init clean compile
@@ -17,12 +13,13 @@ default: clean compile
 all: init clean compile
 
 init:
-	$(RRR) $(INAME).R
+	pip3 install numpy
+	pip3 install matplotlib
 
 clean:
 	rm -f *.pdf
 
-compile: $(FNAME).pdf
+compile: $(FIGURE).pdf
 
-$(FNAME).pdf: $(SNAME).R $(INAME.R)
-	$(RRR) $(SNAME).R $@
+$(FIGURE).pdf: $(SOURCE).py
+	$(PPP) $(SOURCE).py $@
